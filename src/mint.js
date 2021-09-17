@@ -101,6 +101,14 @@ useEffect(() =>{
     })
     setMessagePebble("Success!")
   }
+
+async function rug(){
+  const account = metaMaskAccount;
+  await rugstore.methods.rug().send({
+    from: account
+  })
+}
+
   const metaMask = {account};
   const metaMaskAccount = metaMask.account;
   const numberOfTokens = amount;
@@ -113,6 +121,7 @@ useEffect(() =>{
 
       <div className="mintBox">
       <br></br>
+      
       <form>
         <h4>Mint with ETH:</h4>
         <p>You will pay: {showEthPrice} ETH (plus gas)</p>
