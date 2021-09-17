@@ -34,9 +34,9 @@ function Main({Component, pageProps}) {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
     <div className="App">
-    <img src="images/closedblack.svg" width="400"></img>
-    <Choose chooseMM={chooseMM} chooseWC={chooseWC}/>
-    {mBool ? <MetaMask/> : <WalletC />}
+    <img src="images/open.svg" width="400"></img>
+
+    <MetaMask/>
     <br></br>
 
     </div>
