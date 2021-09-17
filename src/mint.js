@@ -56,50 +56,69 @@ useEffect(() =>{
   }
   async function mintDog() {
     const account = metaMaskAccount;
-    setMessage("Approving...")
-    await dog.methods.approve('0x2721B369Be9a9b1739fc107fA54727AbF083a8ec', "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({from:account});
-    setMessage("Success!")
     setMessage("Weaving your rug...")
     await rugstore.methods.mintRugWithDog(amountDog).send({
       from: metaMaskAccount
     })
     setMessage("Success!")
   }
+
+  async function approveDog() {
+    const account = metaMaskAccount;
+    setMessage("Approving...")
+    await dog.methods.approve('0x868193f5743436b7052549e6a3640580a9355f27', "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({from:account});
+    setMessage("Success!")
+  }
+
   async function mintAgld() {
     const account = metaMaskAccount;
     const agldPricey = await rugstore.methods.showAGLDPriceSushi().call();
     const val = (agldPricey * amountAgld).toString();
     console.log(val);
-    setMessageAgld("Approving...")
-    await agld.methods.approve('0x2721B369Be9a9b1739fc107fA54727AbF083a8ec', val).send({from:account});
-    setMessageAgld("Success!")
     setMessageAgld("Weaving your rug...")
     await rugstore.methods.mintRugWithAgld(amountAgld).send({
       from: metaMaskAccount
     })
     setMessage("Success!")
   }
+
+
+  async function approveAgld() {
+    const account = metaMaskAccount;
+    setMessageAgld("Approving...")
+    await agld.methods.approve('0x868193f5743436b7052549e6a3640580a9355f27', "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({from:account});
+    setMessageAgld("Success!")
+  }
+
+
   async function mintAsh() {
     const account = metaMaskAccount;
-    setMessageAsh("Approving...")
-    await ash.methods.approve('0x2721B369Be9a9b1739fc107fA54727AbF083a8ec', "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({from:account});
-    setMessageAsh("Success!")
     setMessageAsh("Weaving your rug...")
     await rugstore.methods.mintRugWithAsh(amountAsh).send({
       from: metaMaskAccount
     })
     setMessageAsh("Success!")
   }
+
+
+  async function approveAsh() {
+    const account = metaMaskAccount;
+    await ash.methods.approve('0x868193f5743436b7052549e6a3640580a9355f27', "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({from:account});
+  }
+
+
   async function mintPebble() {
     const account = metaMaskAccount;
-    setMessagePebble("Approving...")
-    await pebble.methods.approve('0x2721B369Be9a9b1739fc107fA54727AbF083a8ec', "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({from:account});
-    setMessagePebble("Success!")
     setMessagePebble("Weaving your rug...")
     await rugstore.methods.mintRugWithPebble(amountPebble).send({
       from: metaMaskAccount
     })
     setMessagePebble("Success!")
+  }
+  async function approvePebble() {
+    const account = metaMaskAccount;
+    setMessagePebble("Approving...")
+    await pebble.methods.approve('0x868193f5743436b7052549e6a3640580a9355f27', "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({from:account});
   }
 
 async function rug(){
@@ -121,7 +140,7 @@ async function rug(){
 
       <div className="mintBox">
       <br></br>
-      
+
       <form>
         <h4>Mint with ETH:</h4>
         <p>You will pay: {showEthPrice} ETH (plus gas)</p>
@@ -154,6 +173,7 @@ async function rug(){
           </div>
           </form>
           <p>{message}</p>
+          <button onClick={approveDog}>Approve</button>
           <button onClick={mintDog}>Mint</button>
           </div>
 
@@ -175,6 +195,7 @@ async function rug(){
             </div>
             </form>
             <p>{messageAgld}</p>
+            <button onClick={approveAgld}>Approve</button>
             <button onClick={mintAgld}>Mint</button>
             </div>
 
@@ -196,6 +217,7 @@ async function rug(){
               </div>
               </form>
               <p>{messagePebble}</p>
+              <button onClick={approvePebble}>Approve</button>
               <button onClick={mintPebble}>Mint</button>
               </div>
 
@@ -217,6 +239,7 @@ async function rug(){
                 </div>
                 </form>
                 <p>{messageAsh}</p>
+                <button onClick={approveAsh}>Approve</button>
                 <button onClick={mintAsh}>Mint</button>
                 </div>
 
